@@ -245,7 +245,7 @@ def request_jamf_token():
         except:
             logging.error("Jamf sent a malformed timestamp: {}\n Please feel free to complain to Jamf support.".format(jsonresponse['expires_in']))
             raise SystemExit("Unable to grok Jamf Timestamp - Exiting")
-        logging.debug("Token expires in: {}".format(expires_time - datetime.datetime.now(datetime.timezone.utc)))
+        logging.debug("Token expires in: {}".format(expires_in))
         # The headers are also global, because they get used elsewhere.
         logging.info("Setting new jamf headers with bearer token")
         jamfheaders = {'Authorization': 'Bearer {}'.format(jsonresponse['access_token']),'Accept': 'application/json','Content-Type':'application/json'}

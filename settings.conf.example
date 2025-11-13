@@ -1,5 +1,5 @@
 [jamf]
-#REQUIRED: Either/or or both for this section
+# This entire section is Required
 url = https://yourinstance.jamfcloud.com
 client_id = yourClientID
 client_secret = yourClientSecret
