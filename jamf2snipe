@@ -576,6 +576,7 @@ def create_snipe_model(payload):
     response = session.post(api_url, headers=snipeheaders, json=payload, verify=user_args.do_not_verify_ssl, hooks={'response': request_handler})
     if response.status_code == 200:
         jsonresponse = response.json()
+        logging.debug('Received the following JSON response: {}'.format(jsonresponse))
         modelnumbers[payload['model_number']] = jsonresponse['id']
         return True
     else:
