@@ -42,7 +42,7 @@ jobs:
           mobile_model_category_id = ${{ vars.MOBILE_MODEL_CATEGORY }}
           computer_custom_fieldset_id = ${{ vars.COMPUTER_FIELDSET }}
           mobile_custom_fieldset_id = ${{ vars.MOBILE_FIELDSET }}
-          
+
           EOF
           echo "${{ vars.MAPPINGS }}" >> settings.conf
 
