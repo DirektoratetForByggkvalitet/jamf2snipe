@@ -36,8 +36,8 @@ jobs:
           [snipe-it]
           url = ${{ vars.SNIPE_URL }}
           apikey = ${{ secrets.SNIPE_APIKEY }}
-          manufacturer_id = ${{ vars.MANUFACTURER_ID }} # Apple
-          defaultStatus = ${{ vars.DEFAULT_STATUS}} # Ready to deploy
+          manufacturer_id = ${{ vars.manufacturer_id }}
+          defaultStatus = ${{ vars.DEFAULT_STATUS}}
           computer_model_category_id = ${{ vars.COMPUTER_MODEL_CATEGORY }}
           mobile_model_category_id = ${{ vars.MOBILE_MODEL_CATEGORY }}
           computer_custom_fieldset_id = ${{ vars.COMPUTER_FIELDSET }}
