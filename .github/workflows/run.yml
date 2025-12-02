@@ -28,21 +28,21 @@ jobs:
       - name: Populate settings.conf
         run: |
           cat << EOF > settings.conf
-[jamf]
-url = ${{ vars.JAMF_URL }}
-client_id = ${{ secrets.JAMF_CLIENT_ID }}
-client_secret = ${{ secrets.JAMF_CLIENT_SECRET }}
+          [jamf]
+          url = ${{ vars.JAMF_URL }}
+          client_id = ${{ secrets.JAMF_CLIENT_ID }}
+          client_secret = ${{ secrets.JAMF_CLIENT_SECRET }}
 
-[snipe-it]
-url = ${{ vars.SNIPE_URL }}
-apikey = ${{ secrets.SNIPE_APIKEY }}
-manufacturer_id = ${{ vars.MANUFACTURER_ID }} # Apple
-defaultStatus = ${{ vars.DEFAULT_STATUS}} # Ready to deploy
-computer_model_category_id = ${{ vars.COMPUTER_MODEL_CATEGORY }}
-mobile_model_category_id = ${{ vars.MOBILE_MODEL_CATEGORY }}
+          [snipe-it]
+          url = ${{ vars.SNIPE_URL }}
+          apikey = ${{ secrets.SNIPE_APIKEY }}
+          manufacturer_id = ${{ vars.MANUFACTURER_ID }} # Apple
+          defaultStatus = ${{ vars.DEFAULT_STATUS}} # Ready to deploy
+          computer_model_category_id = ${{ vars.COMPUTER_MODEL_CATEGORY }}
+          mobile_model_category_id = ${{ vars.MOBILE_MODEL_CATEGORY }}
 
-${{ vars.MAPPINGS }}
-EOF
+          ${{ vars.MAPPINGS }}
+          EOF
 
       - name: Run jamf2snipe
         run: |
