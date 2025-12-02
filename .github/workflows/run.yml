@@ -6,6 +6,10 @@ name: Run jamf2snipe
 # or API.
 on:
   workflow_dispatch:
+  schedule:
+    # Tidspunktene er i GMT
+    - cron: "24 */6 * * 1-5"
+
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
