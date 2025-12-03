@@ -57,7 +57,6 @@ import datetime
 from requests import Session
 from requests.adapters import HTTPAdapter
 from urllib3 import Retry
-from dateutil import parser as dateParser
 
 # Set us up for using runtime arguments by defining them.
 runtimeargs = argparse.ArgumentParser()
@@ -622,7 +621,8 @@ def update_snipe_asset(snipe_id, payload):
                 if key == 'purchase_date':
                     # Try to parse the incoming date in order to format it correctly
                     try:
-                        tempdate = dateParser.parse(payload[key])
+                        int(payload[key])
+                        tempdate = datetime.fromtimestamp(payload[key])
                         payload[key] = tempdate.strftime("%Y-%m-%d")
                     except ValueError:
                         payload[key] = payload[key]
