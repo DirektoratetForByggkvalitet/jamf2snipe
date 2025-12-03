@@ -889,7 +889,7 @@ for jamf_type in jamf_types:
             if user_args.auto_incrementing:
                 newasset.pop('asset_tag', None)
             # If the purchase_date is given as a timestamp, reformat it
-            if user_args.epoch_purchase_date and (purchase_date in newasset):
+            if user_args.epoch_purchase_date and newasset.get('purchase_date') is not None:
                 try:
                     purchase_date = datetime.fromtimestamp(int(newasset['purchase_date']))
                     newasset['purchase_date'] = purchase_date.strftime("%Y-%m-%d")
@@ -972,7 +972,7 @@ for jamf_type in jamf_types:
 
                 if updates:
                 # If the purchase_date is given as a timestamp, reformat it
-                    if user_args.epoch_purchase_date and (purchase_date in updates):
+                    if user_args.epoch_purchase_date and updates.get('purchase_date') is not None:
                         try:
                             purchase_date = datetime.fromtimestamp(int(updates['purchase_date']))
                             updates['purchase_date'] = purchase_date.strftime("%Y-%m-%d")
