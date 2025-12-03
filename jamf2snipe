@@ -623,9 +623,9 @@ def update_snipe_asset(snipe_id, payload):
                     # Try to parse the incoming date in order to format it correctly
                     try:
                         tempdate = dateParser.parse(payload[key])
-                        payload[key] = tempdate.strftime("%Y-%m-%d 00:00:00")
+                        payload[key] = tempdate.strftime("%Y-%m-%d")
                     except ValueError:
-                        payload[key] = payload[key] + " 00:00:00"
+                        payload[key] = payload[key]
                 if payload[key] == '':
                     payload[key] = None
                 if jsonresponse['payload'][key] != payload[key]:
