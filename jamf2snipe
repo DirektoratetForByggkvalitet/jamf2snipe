@@ -889,10 +889,9 @@ for jamf_type in jamf_types:
             if user_args.auto_incrementing:
                 newasset.pop('asset_tag', None)
             # If the purchase_date is given as a timestamp, reformat it
-            if user_args.epoch_purchase_date and newasset.get('purchase_date') is not None:
+            if newasset.get('purchase_date') is not None:
                 try:
-                    purchase_date = datetime.datetime.fromtimestamp(newasset['purchase_date'])
-                    newasset['purchase_date'] = purchase_date.strftime("%Y-%m-%d 00:00:00")
+                    newasset['purchase_date'] = newasset['purchase_date'][:10]
                 except ValueError:
                     logging.warning("Couldn't convert the purchase_date '{}' to a valid date".format(newasset['purchase_date']))
 
@@ -972,12 +971,8 @@ for jamf_type in jamf_types:
 
                 if updates:
                 # If the purchase_date is given as a timestamp, reformat it
-                    if user_args.epoch_purchase_date and updates.get('purchase_date') is not None:
-                        try:
-                            purchase_date = datetime.datetime.fromtimestamp(updates['purchase_date'])
-                            updates['purchase_date'] = purchase_date.strftime("%Y-%m-%d 00:00:00")
-                        except ValueError:
-                            logging.warning("Couldn't convert the purchase_date '{}' to a valid date".format(updates['purchase_date']))
+                    if updates.get('purchase_date') is not None:
+                        updates['purchase_date'] = updates['purchase_date'][:10]
                     update_snipe_asset(snipe_id, updates)
 
                 if ((user_args.users or user_args.users_inverse) and (snipe['rows'][0]['assigned_to'] == None) == user_args.users) or user_args.users_force:
