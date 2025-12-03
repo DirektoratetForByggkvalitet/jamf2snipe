@@ -891,7 +891,7 @@ for jamf_type in jamf_types:
             # If the purchase_date is given as a timestamp, reformat it
             if user_args.epoch_purchase_date and newasset.get('purchase_date') is not None:
                 try:
-                    purchase_date = datetime.fromtimestamp(int(newasset['purchase_date']))
+                    purchase_date = datetime.datetime.fromtimestamp(int(newasset['purchase_date']))
                     newasset['purchase_date'] = purchase_date.strftime("%Y-%m-%d")
                 except ValueError:
                     logging.warning("Couldn't convert the purchase_date to a valid date")
