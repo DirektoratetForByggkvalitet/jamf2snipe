@@ -619,13 +619,7 @@ def update_snipe_asset(snipe_id, payload):
         else:
             for key in payload:
                 if key == 'purchase_date':
-                    # Try to parse the incoming date in order to format it correctly
-                    try:
-                        int(payload[key])
-                        tempdate = datetime.fromtimestamp(payload[key])
-                        payload[key] = tempdate.strftime("%Y-%m-%d")
-                    except ValueError:
-                        payload[key] = payload[key]
+                    payload[key] = payload[key] + " 00:00:00"
                 if payload[key] == '':
                     payload[key] = None
                 if jsonresponse['payload'][key] != payload[key]:
