@@ -894,7 +894,7 @@ for jamf_type in jamf_types:
                     purchase_date = datetime.datetime.fromtimestamp(int(newasset['purchase_date']))
                     newasset['purchase_date'] = purchase_date.strftime("%Y-%m-%d 00:00:00")
                 except ValueError:
-                    logging.warning("Couldn't convert the purchase_date to a valid date")
+                    logging.warning("Couldn't convert the purchase_date '{}' to a valid date".format(newasset['purchase_date']))
 
             new_snipe_asset = create_snipe_asset(newasset)
             logging.debug(new_snipe_asset)
@@ -977,7 +977,7 @@ for jamf_type in jamf_types:
                             purchase_date = datetime.datetime.fromtimestamp(int(updates['purchase_date']))
                             updates['purchase_date'] = purchase_date.strftime("%Y-%m-%d 00:00:00")
                         except ValueError:
-                            logging.warning("Couldn't convert the purchase_date to a valid date")
+                            logging.warning("Couldn't convert the purchase_date '{}' to a valid date".format(updates['purchase_date']))
                     update_snipe_asset(snipe_id, updates)
 
                 if ((user_args.users or user_args.users_inverse) and (snipe['rows'][0]['assigned_to'] == None) == user_args.users) or user_args.users_force:
