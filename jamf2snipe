@@ -971,6 +971,13 @@ for jamf_type in jamf_types:
                             logging.debug("Skipping the payload, because it already exists, or the Snipe key we're mapping to doesn't.")
 
                 if updates:
+                # If the purchase_date is given as a timestamp, reformat it
+                    if user_args.epoch_purchase_date and (purchase_date in updates):
+                        try:
+                            purchase_date = datetime.fromtimestamp(int(updates['purchase_date']))
+                            updates['purchase_date'] = purchase_date.strftime("%Y-%m-%d")
+                        except ValueError:
+                            logging.warning("Couldn't convert the purchase_date to a valid date")
                     update_snipe_asset(snipe_id, updates)
 
                 if ((user_args.users or user_args.users_inverse) and (snipe['rows'][0]['assigned_to'] == None) == user_args.users) or user_args.users_force:
